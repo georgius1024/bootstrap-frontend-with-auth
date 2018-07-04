@@ -19,7 +19,8 @@ const state = {
 const getters = {
   user: state => state.user,
   token: state => state.token,
-  isAuthenticated: state => Boolean(state.token)
+  isAuthenticated: state => Boolean(state.token),
+  mustChangePassword: state => Boolean(state.user) && (state.user.status === 'reset')
 }
 
 const mutations = {

@@ -9,36 +9,15 @@
               label="Email"
               v-model="email"
               required
+              hint="Отправьте свой e-mail и мы пришлем Вам письмо со ссылкой для входа"
               :rules="[validation.fieldIsRequired, validation.emailMustBeValid]"
               :error-messages="errors('email')"
-              @keyup.enter="focusPassword"
-          ></v-text-field>
-          <v-text-field
-              label="Пароль"
-              v-model="password"
-              ref="password"
-              required
-              type="password"
-              :error-messages="errors('password')"
               @keyup.enter="login"
           ></v-text-field>
         </v-form>
-        <v-divider class="my-4"></v-divider>
-        <v-layout class="mt-4">
-          <v-flex>
-            <router-link :to="{ name: 'LoginByEmail'}">
-              Забыли пароль?
-            </router-link>
-          </v-flex>
-          <v-flex class="text-xs-right">
-            <router-link :to="{ name: 'Register'}">
-              Регистрация
-            </router-link>
-          </v-flex>
-        </v-layout>
       </v-card-text>
       <v-card-actions>
-        <v-btn block color="primary" @click="login" :disabled="!valid">Войти</v-btn>
+        <v-btn block color="primary" @click="login" :disabled="!valid">Отправить</v-btn>
       </v-card-actions>
     </v-card>
   </v-flex>
@@ -51,11 +30,10 @@
   import PanelTitle from '@/components/panel-title.vue'
 
   export default {
-    name: 'Login',
+    name: 'LoginByEmail',
     data () {
       return {
         email: '',
-        password: '',
         valid: false,
         validation,
         errorsData: [],
@@ -113,16 +91,12 @@
         }
         Api.rest({
           method: 'post',
-          url: 'login-traditional',
+          url: 'login-passwordless',
           data: {
-            email: this.email,
-            password: this.password
+            email: this.email
           }
         })
           .then((response) => {
-            this.loginProcedure({user: response.data, token: response.auth.token})
-            Api.token = response.auth
-            this.$router.push({name: 'Index'})
           })
           .catch(error => {
             this.gatherErrors(error)

@@ -78,12 +78,18 @@
           <v-icon>arrow_drop_down</v-icon>
         </v-btn>
         <v-list>
+          <v-list-tile :to="{name: 'Profile'}">
+            <v-list-tile-title>Профайл</v-list-tile-title>
+          </v-list-tile>
+          <v-list-tile :to="{name: 'ChangePassword'}">
+            <v-list-tile-title>Сменить пароль</v-list-tile-title>
+          </v-list-tile>
           <!--
           <v-list-tile v-bind:to="{name: 'ChangePassword'}">
             <v-list-tile-title>Сменить пароль</v-list-tile-title>
           </v-list-tile>
           -->
-          <v-list-tile v-bind:to="{name: 'Logout'}">
+          <v-list-tile :to="{name: 'Logout'}">
             <v-list-tile-title>Выйти</v-list-tile-title>
           </v-list-tile>
         </v-list>
