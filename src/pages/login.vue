@@ -3,7 +3,7 @@
     <v-card>
       <panel-title :caption="'Вход в ' + appName" ></panel-title>
       <v-card-text>
-        <v-form v-model="valid" @input="clearErrors" ref="form">
+        <v-form v-model="valid" ref="form">
           <v-text-field
               autofocus
               label="Email"

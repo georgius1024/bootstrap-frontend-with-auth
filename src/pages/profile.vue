@@ -3,7 +3,7 @@
     <v-card>
       <panel-title caption="Профайл" close></panel-title>
       <v-card-text>
-        <v-form v-model="valid" @input="clearErrors" ref="form">
+        <v-form v-model="valid" ref="form">
           <v-text-field
               label="Email"
               v-model="profile.email"
@@ -31,7 +31,7 @@
       </v-card-text>
       <v-divider/>
       <v-card-actions>
-        <v-btn block color="primary" @click="updateProfile" :disabled="!valid">
+        <v-btn block color="primary" @click="updateProfile">
           Сохранить
         </v-btn>
       </v-card-actions>

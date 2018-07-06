@@ -3,7 +3,7 @@
     <v-card>
       <panel-title caption="Смена пароля"></panel-title>
       <v-card-text>
-        <v-form v-model="valid" @input="clearErrors" ref="form">
+        <v-form v-model="valid" ref="form">
           <v-text-field
               label="Новый пароль"
               v-model="password"
@@ -25,7 +25,7 @@
       </v-card-text>
       <v-divider/>
       <v-card-actions>
-        <v-btn block color="primary" @click="resetPassword" :disabled="!valid">
+        <v-btn block color="primary" @click="resetPassword">
           Сменить пароль
         </v-btn>
       </v-card-actions>

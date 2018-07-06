@@ -111,9 +111,13 @@
   .main-menu {
     padding-bottom: 1px
   }
+  .main-menu .v-toolbar__title {
+    min-width: 64px !important;
+  }
   .main-menu .logo {
     margin-top: 8px;
-    height: 50px;
+    max-height: 50px !important;
+    max-width: 50px !important;
     width: auto;
     filter: grayscale(100%) contrast(0%) brightness(200%);
   }

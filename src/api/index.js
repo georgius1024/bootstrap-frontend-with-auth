@@ -50,14 +50,16 @@ Api.rest = (request) => {
       .catch(error => {
         let errorMessage = 'Общая ошибка'
         let errorStatus = 900
+        let errorFields = []
         if (error.response) {
           if (error.response.data) {
             errorMessage = error.response.data.message
             errorStatus = error.response.status
+            errorFields = error.response.data.errors
           }
         }
         if (Api.onError) {
-          Api.onError(errorMessage, errorStatus)
+          Api.onError(errorMessage, errorStatus, errorFields)
         }
         reject(error)
       })

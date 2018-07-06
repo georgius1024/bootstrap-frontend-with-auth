@@ -7,14 +7,14 @@
     v-model="gotMessage"
   >
     <span v-html="message.text"></span>
-    <v-btn dark icon flat v-on:click.native="gotMessage = false">
+    <v-btn dark icon flat @click.native="gotMessage = false">
       <v-icon>
         clear
       </v-icon>
     </v-btn>
   </v-snackbar>
 </template>
-<script>
+<script type="text/babel">
   import {mapGetters, mapMutations} from 'vuex'
   export default {
     data () {

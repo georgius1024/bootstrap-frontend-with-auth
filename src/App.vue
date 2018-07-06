@@ -18,7 +18,7 @@
   }
 </style>
 
-<script>
+<script type="text/babel">
 import LoadingSpinner from '@/components/app/loading-spinner.vue'
 import Message from '@/components/app/message.vue'
 import MainMenu from '@/components/app/main-menu.vue'
@@ -65,7 +65,7 @@ export default {
     Api.onMessage = (message) => {
       this.setMessage(message)
     }
-    Api.onError = (errorMessage, errorStatus) => {
+    Api.onError = (errorMessage, errorStatus, errorFields) => {
       this.loading = false
       let statusMessage = ''
       switch (errorStatus) {
@@ -80,9 +80,14 @@ export default {
           break
         case 422:
           statusMessage = 'Ошибка в данных'
+          let fieldsMessage = errorFields.map(e => e.message)
+          if (fieldsMessage.length) {
+            errorMessage += ': <ul><li>' + fieldsMessage.join('</li><li>') + '</li><ui>'
+            statusMessage = null
+          }
           break
       }
-      this.setError(errorMessage + '<br>Cтатус: ' + statusMessage)
+      this.setError(errorMessage + (statusMessage ? '<br>Cтатус: ' + statusMessage : ''))
       if (errorStatus === 401) {
         this.logout()
       }
